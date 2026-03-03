@@ -47,3 +47,18 @@ def display_word(data: list):
     print()
 
 # saves the history of the words that have been looked up to a json file called lookup_history.json
+
+def save_history(history: list):
+    with open("lookup_history.json", "w") as f:
+        json.dump(history, f, indent=2)
+    print("History saved to lookup_history.json")
+
+# this gets the history of the words that have been looked up and returns it as a list.
+# If there is no history, it returns an empty list.
+def load_history() -> list:
+    try:
+        with open("lookup_history.json") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+    
